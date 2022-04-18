@@ -14,6 +14,7 @@ var teamDetails=
         "topBatsman": "Rohit Sharma",
         "topBowler": "Bumrah",
         "championshipWon": "5",
+        "Team":"MI",
     },
     {
         "name": "Chennai SuperKings",
@@ -22,6 +23,7 @@ var teamDetails=
         "topBatsman": "Rohit Sharma",
         "topBowler": "Bumrah",
         "championshipWon": "3",
+        "Team":"CSK",
     },
     {
         "name": "Delhi Challengers",
@@ -30,6 +32,7 @@ var teamDetails=
         "topBatsman": "Rohit Sharma",
         "topBowler": "Bumrah",
         "championshipWon": "1",
+        "Team":"DC",
     },
     {
         "name": "Kings-11 Punjab",
@@ -38,6 +41,7 @@ var teamDetails=
         "topBatsman": "Rohit Sharma",
         "topBowler": "Bumrah",
         "championshipWon": "1",
+        "Team":"KXIP",
     },
     {
         "name": "Kolkata Knight Riders",
@@ -46,6 +50,7 @@ var teamDetails=
         "topBatsman": "",
         "topBowler": "",
         "championshipWon": "3",
+        "Team":"KKR",
     },
     {
         "name": "Lucknow Nawabs",
@@ -98,18 +103,18 @@ var teamDetails=
    
   
     
-$(document).ready(function(){
-    var users=JSON.parse(localStorage.getItem("users"));
-    //$(".team-img").attr("src",teamDetails.icon);
-    
-    var displayName = $(".team-name").html(users.name);
-    console.log(users.name)
-    console.log(displayName)
 
-    $(".player-count").html(users.email);
-    $(".top-batsman").html(users.psw);
-    $(".top-bowler").html(users.bowler);
-    $(".matches").html(users.matches);
+    // var users=JSON.parse(localStorage.getItem("users"));
+    // //$(".team-img").attr("src",teamDetails.icon);
+    
+    // var displayName = $(".team-name").html(users.name);
+    // console.log(users.name)
+    // console.log(displayName)
+
+    // $(".player-count").html(users.email);
+    // $(".top-batsman").html(users.psw);
+    // $(".top-bowler").html(users.bowler);
+    // $(".matches").html(users.matches);
     var playerList=[{
         "Name":"Virat Kohli",
         "Role":"Batsman",
@@ -1643,4 +1648,65 @@ $(document).ready(function(){
             $(this).hide();
         });
       });
-})
+
+      var imagesArr=[{src:"./imgs/mi.jpg"},
+      {src:"./imgs/csk.png"},
+      {src:"./imgs/dc.jpg"},
+      {src:"./imgs/kings.jpg"},
+      {src:"./imgs/kkr.jpg"},
+      {src:"./imgs/lucknow.jpg"},
+      {src:"./imgs/rcb.jpg"},
+      {src:"./imgs/rr.jpg"},
+      {src:"./imgs/ahmedabad lions.jpg"},
+      {src:"./imgs/sunrisers.jpg"},
+    ]
+
+      var maincontainer=document.getElementById("main-container")
+      for(var i=0;i<imagesArr.length;i++){
+
+          maincontainer.innerHTML+=`
+          
+          <div id=box${i} class="card" onclick=gettheidhere(box${i})>
+        
+          <img class="mi-image" src="${imagesArr[i].src}">
+       
+      </div>
+     
+          `
+      }
+      var secondMain=document.getElementById('second-main')
+      var playerDetails=document.getElementById('player-details')
+
+    //   creating the fun to remove the teams photos and having player data
+      function gettheidhere(res){
+          maincontainer.innerHTML=""
+          res=res.id
+          charc=res.charAt(res.length-1)
+          console.log(charc)
+          
+          secondMain.innerHTML+=`
+          <div class="team-container">
+          <img class="team-img"/>
+          <div class="team-text">
+              <h1>Team Name :- <h3 class="team-name"> ${teamDetails[charc].name}</h3></h1>
+              <h3>Total Players :- <p class="player-count"> ${teamDetails[charc].playerCount}</p></h3>
+              <h3>Top Batsman :- <p class="top-batsman">${teamDetails[charc].topBatsman}</p></h3>
+              <h3>Top Bowler :- <p class="top-bowler">${teamDetails[charc].topBowler}</p></h3>
+              <h3>Total Matches Won:- <p class="matches">${teamDetails[charc].championshipWon}</p></h3>
+          </div>
+      </div>
+          `
+          playerDetails.innerHTML+=`
+          <div class="playerInfo">
+                
+            </div>
+          `
+
+
+
+          
+          
+        }
+
+
+      console.log(1254)
